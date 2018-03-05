@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface StudentRepository extends CrudRepository<Student, Long> {
+public interface StudentRepository extends CrudRepository<Student2, Long> {
 	
-	List<Student> findByFirstName(String firstName);
+	List<Student2> findAll();
 
 }

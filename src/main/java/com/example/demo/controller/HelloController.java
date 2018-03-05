@@ -6,11 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.domain.Student;
+import com.example.demo.domain.Student2;
 import com.example.demo.domain.StudentRepository;
 
 @Controller
@@ -67,15 +69,17 @@ public class HelloController {
 		return "list";
 	}
 	
-	@RequestMapping("/list2")
+	@RequestMapping(value = "/list2")
 	public String studentlist2(Model model) {
-		model.addAttribute("students", repository.findAll());
+		List<Student2> students = repository.findAll();
+		model.addAttribute("students", students);
+		/*model.addAttribute("students", repository.findAll());*/
 		return "list2";
 	}
 	
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(Student student){
-        repository.save(student);
+	@RequestMapping(value = "/save/{firstName}", method = RequestMethod.POST)
+    public String save(@PathVariable("firstName") String firstName, Student student){
+        //repository.save(student);
         return "redirect:list2";
     }
 
