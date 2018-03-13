@@ -2,26 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Server Programming</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" > </meta>
+<title>Friends</title>
 </head>
-
 <body>
-	<h1>My friends:</h1>
-	<table>  
-    	<tr th:each = "student2 : ${students}">
-    		<td th:text="${student2.firstName}"></td>		
-    	</tr>
-     </table>
-	<h1>Add new friend to list</h1>
-	<div>
-		<form th:object="${student2}" th:action="@{save}" action="#" method="post">
-		  	<label for="name">Name:</label>
-			<input type="text" id="name" th:field="*{firstName}" />
-			<div style="clear: both; display: block; height: 10px;"></div>					
-		  	
-			<input type="submit" value="Submit"></input>
-		</form>
-	</div>
+	<h1>My friends!</h1>
+	<ul th:each="friend : ${friends}">
+		<li th:text="${friend}" />
+	</ul>
+	<h2>Add new friend to list</h2>
+	<form action="#" th:action="@{/list2}" method="get">
+		<p>Name: <input type="text" name="friend"/></p>
+		<p><input type="submit" value="Submit" /></p>
+	</form>
 </body>
 </html>
